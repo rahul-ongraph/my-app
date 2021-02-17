@@ -4,6 +4,7 @@ import Login from './Login'
 import SignUp from './SignUp'
 import DashBoard from './Dashboard'
 import UserDetail from './UserDetail'
+import Forgot from './Forgot'
 //import Routes from './Routes'
 import {
   BrowserRouter as Router,
@@ -21,6 +22,7 @@ export default function App() {
         <Route exact path="/SignUp" component={SignUp} />
         <Route path="/DashBoard" component={DashBoard} />
         <Route path="/UserDetail" component={UserDetail} />
+        <Route path="/Forgot" component={Forgot} />
         </Switch>
       </Router>
   );

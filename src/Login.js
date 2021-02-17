@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { Redirect } from 'react-router-dom';
 import DashBoard from './Dashboard';
+import Forgot from './Forgot'
 export default function Login() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
@@ -33,7 +34,7 @@ export default function Login() {
 					let user = email;
 					history.push({ pathname: "/DashBoard", user: email });
 				} else if (arr.email == email && arr.password !== password) {
-					setError( 'Please check your password')
+					setError('Please check your password')
 					setErrorVisiblity(true)
 				}
 				else {
@@ -48,29 +49,45 @@ export default function Login() {
 	const handleClick = () => {
 		history.push('/SignUp');
 	}
+  const ForgotScreen = () => {
+		history.push('/Forgot');
+	} 
+ 
 	return (
-		<div className="App">
-			<h3>Login Form</h3>
-			<form onSubmit={onSubmit} >
-
-				<div className="form-group">
-					<label>Email</label>
-					<input type="text" className="form-control" value={email} onChange={onChangeEmail} required />
+		<div style={{ backgroundColor: '#305961', height: 520, flex: 1 }}>
+			<div style={{ textAlign: 'center' }}>
+				<h3>Login Form</h3>
+				<div style={{ marginTop: 50, marginLeft: 360, height: 350, width: '40%', backgroundColor: 'white' }}>
+					<div>
+						<h3>Login to Pirix</h3>
+					</div>
+					<form style={{ marginTop: 50 }} onSubmit={onSubmit} >
+						<div className="form-group">
+							<label style={{ fontWeight: 'bold' }}>Email
+							<input style={{ marginLeft: 35, height: 20 }} type="text" className="form-control" value={email} onChange={onChangeEmail} required />
+							</label>
+						</div>
+						<div style={{ marginTop: 20 }} className="form-group">
+							<label style={{ fontWeight: 'bold' }}>Password
+							<input style={{ marginLeft: 15, height: 20 }} type="password" className="form-control" value={password} onChange={onChangePassword} required />
+							</label>
+						</div>
+						{errorVisiblity ?
+							<p style={{ color: 'red' }} className="error">
+								{error}
+							</p>
+							:
+							null
+						}
+					</form>
+					<div style={{ marginTop: 30 }}>
+						<h5 onClick={ForgotScreen} style={{ color: '#48d9cf' }}>Forgot your password?</h5>
+						<h5 style={{ fontWeight: 'normal' }}>Rember Me</h5>
+						<button style={{ width: '25%', borderRadius: 10, backgroundColor: '#48d971', borderColor: '#48d971' }} type="submit">Sign in</button><th></th>
+						<p onClick={handleClick} style={{ color: '#48d9cf' }}>Not yet joined? Click here to join the benefits revolution</p>
+					</div>
 				</div>
-				<div className="form-group">
-					<label>Password</label>
-					<input type="password" className="form-control" value={password} onChange={onChangePassword} required />
-				</div>
-				{errorVisiblity ?
-					<p style={{color:'red'}} className="error">
-						{error}
-					</p>
-					:
-					null
-				}
-				<button type="submit">Login</button><th></th>
-				<button onClick={handleClick} type="submit" >SignUp</button>
-			</form>
+			</div>
 		</div>
 	);
 }
